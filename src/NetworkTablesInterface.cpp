@@ -1,8 +1,8 @@
 #include "NetworkTablesInterface.h"
 
-bool NetworkTablesInterface::ToteFound()
+bool NetworkTablesInterface::UFound()
 {
-	return NetworkTable::GetTable("cv")->GetBoolean("toteFound", false);
+	return NetworkTable::GetTable("cv")->GetBoolean("objectFound", false);
 }
 
 double NetworkTablesInterface::GetDistance()
@@ -13,4 +13,9 @@ double NetworkTablesInterface::GetDistance()
 double NetworkTablesInterface::GetAzimuth()
 {
 	return NetworkTable::GetTable("cv")->GetNumber("azimuth_deg", -1.0);
+}
+
+double NetworkTablesInterface::GetAltitude()
+{
+	return NetworkTable::GetTable("cv")->GetNumber("altitude_deg", -1.0);
 }

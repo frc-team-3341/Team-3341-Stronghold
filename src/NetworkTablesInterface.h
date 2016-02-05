@@ -5,9 +5,10 @@
 
 class NetworkTablesInterface{
 public:
-	static bool ToteFound();
+	static bool UFound();
 	static double GetDistance();
 	static double GetAzimuth();
+	static double GetAltitude();
 };
 
 #endif

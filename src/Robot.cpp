@@ -16,6 +16,9 @@ private:
 		CommandBase::init();
 		autonomousCommand = new AutonomousProgram();
 		lw = LiveWindow::GetInstance();
+		CameraServer::GetInstance()->SetQuality(50);
+		////the camera name (ex "cam0") can be found through the roborio web interface
+	    CameraServer::GetInstance()->StartAutomaticCapture("cam0");
 	}
 	
 	void DisabledPeriodic()
@@ -57,7 +60,12 @@ private:
 //		}
 
 		//printf("Gyro Angle: %f\n", CommandBase::gyro->GetAngle());
+		while (IsOperatorControl() && IsEnabled())
+		{
 		Scheduler::GetInstance()->Run();
+			Wait(0.005);				// wait for a motor update time
+		}
+		/////Scheduler::GetInstance()->Run();
 		//CommandBase::ir->printValues();
 		//printf("Ticks: %f\n", CommandBase::elevator->getS2Distance());
 	}
@@ -68,6 +76,6 @@ private:
 	}
 };
 
-START_ROBOT_CLASS(Robot);
+//START_ROBOT_CLASS(Robocam);
 
 

@@ -4,8 +4,11 @@
 GyroSubsystem::GyroSubsystem() :
 		Subsystem("GyroSubsystem")
 {
-	agyro = new Gyro(new AnalogInput(0));
-	agyro->InitGyro();
+
+	//agyro = new Gyro(new AnalogInput(0));
+	//agyro->InitGyro();
+	agyro = new ADXRS450_Gyro();//new AnalogInput(0));
+	agyro->Calibrate();
 	agyro->Reset();
 }
 
