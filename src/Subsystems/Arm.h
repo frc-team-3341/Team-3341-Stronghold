@@ -12,8 +12,8 @@
 //armUp - rotates arm up to the robots and stops (attach to button)
 //setStart - puts arm in start (neutral) position (attach to button)
 //armDown - rotates arm down (for see-saw obstacle; attach to button)
-//rotateUpWhileTriggered (can be “triggered” by either button or joystick)
-//rotateDownWhileTriggered (can be “triggered” by either button or joystick)
+//rotateUpWhileTriggered (can be â€œtriggeredâ€� by either button or joystick)
+//rotateDownWhileTriggered (can be â€œtriggeredâ€� by either button or joystick)
 //StopArm - Called either based on limit switch input or button input
 
 
@@ -25,7 +25,7 @@ private:
 	Jaguar* motor;
 	Encoder* encoder;
 	float speed;
-	bool armControl
+	bool armControl;
 public:
 	float const static DEFAULT_SPEED;
 	Arm();
