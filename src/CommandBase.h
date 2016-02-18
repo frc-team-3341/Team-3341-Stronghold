@@ -25,5 +25,6 @@ class CommandBase: public Command
         static OI* oi;
         static GyroSubsystem* gyro;
         static Arm* arm;
+	static UltrasonicSensor* ultraSensor;
 };
 #endif

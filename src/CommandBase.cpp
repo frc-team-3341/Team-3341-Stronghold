@@ -6,6 +6,7 @@ Drive* CommandBase::drive = NULL;
 OI* CommandBase::oi = NULL;
 GyroSubsystem* CommandBase::gyro = NULL;
 Arm* CommandBase::arm = NULL;
+UltrasonicSensor* CommandBase::ultraSensor = NULL;
 
 CommandBase::CommandBase(char const* name) :
     Command(name)
@@ -26,4 +27,5 @@ void CommandBase::init()
     oi = new OI();
     gyro = new GyroSubsystem();
     arm = new Arm();
+    ultraSensor = new UltrasonicSensor();
 }
