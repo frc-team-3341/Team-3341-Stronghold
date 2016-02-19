@@ -6,9 +6,22 @@
 
 class Acquirer: public Subsystem
 {
-    public:
-        Acquirer();
-        void InitDefaultCommand();
+private:
+	// It's desirable that everything possible under private except
+	// for methods that implement subsystem capabilities
+	Victor* motor;
+	bool enabled;
+	DigitalInput* ir;
+public:
+	Acquirer();
+	void BallIn();
+	void BallOut();
+	void Stop();
+	bool IsEnabled();
+	void Enable();
+	void Disable();
+	bool DetectBall();
+	bool GetInput();
 };
 
 #endif

@@ -2,7 +2,7 @@
 
 GetBall::GetBall()
 {
-    // Use Requires() here to declare subsystem dependencies
+	Requires(acquirer);
 }
 
 void GetBall::Initialize()
@@ -11,11 +11,12 @@ void GetBall::Initialize()
 
 void GetBall::Execute()
 {
+	acquirer->BallIn();
 }
 
 bool GetBall::IsFinished()
 {
-    return false;
+    return true;
 }
 
 void GetBall::End()
