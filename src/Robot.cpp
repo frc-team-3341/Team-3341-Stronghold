@@ -46,13 +46,13 @@ class Robot: public IterativeRobot
             //the camera name (ex "cam0") can be found through the roborio web interface
             CameraServer::GetInstance()->StartAutomaticCapture("cam1");
             CameraServer::GetInstance()->SetQuality(1500);
-            std::shared_ptr<USBCamera> usbCamptr =
-                    CameraServer::GetInstance()->m_camera; //(new USBCamera("cam1",true));
-            if (usbCamptr != nullptr)
-            {
-                usbCamptr->SetBrightness(2);
-                usbCamptr->SetExposureAuto();
-            }
+            //std::shared_ptr<USBCamera> usbCamptr =
+            //        CameraServer::GetInstance()->m_camera; //(new USBCamera("cam1",true));
+            //if (usbCamptr != nullptr)
+            //{
+            //    usbCamptr->SetBrightness(2);
+            //    usbCamptr->SetExposureAuto();
+            //}
         }
 
         void DisabledPeriodic()

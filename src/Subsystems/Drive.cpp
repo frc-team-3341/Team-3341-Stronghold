@@ -2,6 +2,7 @@
 #include "../RobotMap.h"
 #include <math.h>
 #include "Commands/ArcadeDrive.h"
+#include "Commands/TankDrive.h"
 #include "../CommandBase.h"
 
 #define max(x, y) (((x) > (y)) ? (x) : (y))
@@ -31,6 +32,12 @@ void Drive::ResetEncoders()
 {
     encoderLeft->Reset();
     encoderRight->Reset();
+}
+
+void Drive::tankDrive(double leftY, double rightY)
+{
+	left->Set(leftY);
+	right->Set(rightY);
 }
 
 void Drive::arcadeDrive(float moveValue, float rotateValue)
@@ -119,7 +126,7 @@ void Drive::getAccelerations(double* x, double* y, double* z)
 
 void Drive::InitDefaultCommand()
 {
-    SetDefaultCommand(new ArcadeDrive());
+    SetDefaultCommand(new TankDrive());
 }
 
 double Drive::GetLeftEncoderDistance()

@@ -15,8 +15,9 @@ const int ACQUIRER_IR = 2;
 const int ARM = 3;
 
 //JOYSTICKS
-const int DRIVESTICK = 0;
-const int OPERATORSTICK = 1;
+const int DRIVESTICKLEFT = 0;
+const int DRIVESTICKRIGHT = 1;
+const int OPERATORSTICK = 2;
 
 // DRIVE ENCODERS (Digital I/O pins)
 const int ENCODER_LEFT_1 = 0;

@@ -24,6 +24,7 @@ class Drive: public Subsystem
         void setMult(float m);
         int getMult();
         void arcadeDrive(float move, float rotate);
+        void tankDrive(double leftY, double rightY);
 
         double GetDistance();
         double GetRate();
