@@ -26,9 +26,12 @@ OI::OI() :
 	driveStickRight(new Joystick(DRIVESTICKRIGHT)),
 	operatorStick(new Joystick(OPERATORSTICK))
 {
-    // Hold down button 13 to "switch the front and back sides" of the robot
+	// TODO: Make toggle for TankDrive -> ArcadeDrive
+
+
+    // Hold down button 2 to "switch the front and back sides" of the robot
     // Make driving in reverse much easier
-    Button* toggleReverse = new JoystickButton(driveStickLeft, 13);
+    Button* toggleReverse = new JoystickButton(driveStickLeft, 5);
     toggleReverse->WhenPressed(new DriveReverse());
     toggleReverse->WhenReleased(new DriveForward());
 }

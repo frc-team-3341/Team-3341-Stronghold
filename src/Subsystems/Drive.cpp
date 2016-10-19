@@ -18,6 +18,7 @@ Drive::Drive() :
     encoderRight->SetDistancePerPulse(1.0);
 }
 
+// Mult controls the direction of the robot (-1 for reverse, 1 for forward)
 void Drive::setMult(float m)
 {
     mult = m;
@@ -36,8 +37,17 @@ void Drive::ResetEncoders()
 
 void Drive::tankDrive(double leftY, double rightY)
 {
-	left->Set(leftY);
-	right->Set(rightY);
+	// mult determines direction (1 = forward, -1 = backwards)
+	if(mult == 1)
+	{
+		left->Set(leftY);
+		right->Set(rightY);
+	}
+	else
+	{
+		left->Set(rightY);
+		right->Set(leftY);
+	}
 }
 
 void Drive::arcadeDrive(float moveValue, float rotateValue)

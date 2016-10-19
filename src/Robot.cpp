@@ -14,45 +14,13 @@
 class Robot: public IterativeRobot
 {
     private:
-        // Autonomous testing commands
-        LowBarAutonomous* autonomousCommand;
-        Command* driveCommand;
-        WallFollow* wallFollowCommand;
-
         LiveWindow* lw;
 
         void RobotInit()
         {
             CommandBase::init();
 
-           // autonomousCommand = new LowBarAutonomous();
-
-            // Try to maintain the distance from the wal constant
-            double distanceFromWall = CommandBase::ultraSonic->ReadUltra(
-                    CommandBase::ultraSonic->LEFTSENSOR);
-            wallFollowCommand = new WallFollow(distanceFromWall, 6.0,
-                    CommandBase::ultraSonic->LEFTSENSOR);
-
-            // use this to breach defense
-            // driveCommand = new TurnAndDrive(20.0, 0.0);
-
-            // Use this to only reach defense
-            //driveCommand = new TurnAndDrive(6.0,0.0);
-
-            // Use this for moat
-            driveCommand = new MoatRun();
-
             lw = LiveWindow::GetInstance();
-            //the camera name (ex "cam0") can be found through the roborio web interface
-            CameraServer::GetInstance()->StartAutomaticCapture("cam1");
-            CameraServer::GetInstance()->SetQuality(1500);
-            //std::shared_ptr<USBCamera> usbCamptr =
-            //        CameraServer::GetInstance()->m_camera; //(new USBCamera("cam1",true));
-            //if (usbCamptr != nullptr)
-            //{
-            //    usbCamptr->SetBrightness(2);
-            //    usbCamptr->SetExposureAuto();
-            //}
         }
 
         void DisabledPeriodic()
@@ -62,8 +30,6 @@ class Robot: public IterativeRobot
 
         void AutonomousInit()
         {
-            if (driveCommand != NULL)
-                driveCommand->Start();
         }
 
         void AutonomousPeriodic()
@@ -73,36 +39,49 @@ class Robot: public IterativeRobot
 
         void TeleopInit()
         {
-            if (autonomousCommand != NULL)
-                autonomousCommand->Cancel();
             CommandBase::drive->ResetEncoders();
             CommandBase::gyro->ResetGyro();
-//            Command* turn = new TurnXDegrees(1);
-//            turn->Start();
-            // arm->Start();
+
         }
 
         void TeleopPeriodic()
         {
-            SmartDashboard::PutNumber("Gyro Angle",
-                    CommandBase::gyro->GetAngle());
-            SmartDashboard::PutNumber("IR Analog Input",
-                    CommandBase::acquirer->GetInput());
-            std::cout << "IR Analog Input: " << CommandBase::acquirer->GetInput() << std::endl;
-            SmartDashboard::PutBoolean("Ball Loaded",
-                    CommandBase::acquirer->DetectBall());
-            //SmartDashboard::PutNumber("Right Encoder distance",
-            //        CommandBase::drive->GetRightEncoderDistance());
-            //SmartDashboard::PutNumber("Left Encoder distance",
-            //        CommandBase::drive->GetLeftEncoderDistance());
-            //SmartDashboard::PutNumber("Driver Slider Value",
-            //        CommandBase::oi->getDriveStick()->GetThrottle());
-            CommandBase::ultraSonic->PrintUltraValues();
+        	// Sensors currently disconnected
+            //SmartDashboard::PutNumber("Gyro Angle", CommandBase::gyro->GetAngle());
+            //SmartDashboard::PutNumber("IR Analog Input", CommandBase::acquirer->GetInput());
+            //SmartDashboard::PutBoolean("Ball Loaded", CommandBase::acquirer->DetectBall());
+            //SmartDashboard::PutNumber("Right Encoder distance", CommandBase::drive->GetRightEncoderDistance());
+            //SmartDashboard::PutNumber("Left Encoder distance", CommandBase::drive->GetLeftEncoderDistance());
+
             Scheduler::GetInstance()->Run();
         }
 
         void TestPeriodic()
         {
+        	/*
+        	 * 	TODO: GamePad info:
+        	 * 	Stick Left Y -> GetY
+        	 * 	Stick Left X -> GetX
+        	 * 	Stick Right Y -> GetThrottle
+        	 * 	Stick Right X -> GetZ or GetTwist
+        	 */
+
+        	// Joystick Debug information
+        	Joystick* testStick = CommandBase::oi->getDriveStickLeft();
+            SmartDashboard::PutNumber("GetX", testStick->GetX());
+            SmartDashboard::PutNumber("GetY", testStick->GetY());
+            SmartDashboard::PutNumber("GetZ", testStick->GetZ());
+            SmartDashboard::PutNumber("GetTwist", testStick->GetTwist());
+            SmartDashboard::PutNumber("GetThrottle", testStick->GetThrottle());
+            SmartDashboard::PutNumber("GetMagnitude", testStick->GetMagnitude());
+            SmartDashboard::PutNumber("GetDirectionRadians", testStick->GetDirectionRadians());
+            SmartDashboard::PutNumber("GetDirectionDegrees", testStick->GetDirectionDegrees());
+            SmartDashboard::PutNumber("GetType", testStick->GetType());
+            SmartDashboard::PutNumber("GetAxisCount", testStick->GetAxisCount());
+            SmartDashboard::PutNumber("GetButtonCount", testStick->GetButtonCount());
+            SmartDashboard::PutNumber("GetPOVCount", testStick->GetPOVCount());
+
+            SmartDashboard::PutBoolean("GetIsXbox", testStick->GetIsXbox());
             lw->Run();
         }
 };
