@@ -28,6 +28,10 @@ void TankDrive::Execute() {
 	leftY = mapToCubic(0.3, 0, leftY);
 	rightY = mapToCubic(0.3, 0, rightY);
 
+	// FOR CLUB RUSH ONLY: Reduce the max speed
+	leftY /= 2;
+	rightY /= 2;
+
 	drive->tankDrive(leftY, rightY);
 }
 
